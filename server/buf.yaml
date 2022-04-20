@@ -1,0 +1,6 @@
+version: v1
+name: buf.build/gogrpcgateway/service_proto
+deps:
+  - buf.build/googleapis/googleapis
+  - buf.build/grpc-ecosystem/grpc-gateway
+
