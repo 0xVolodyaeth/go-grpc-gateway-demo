@@ -3,8 +3,9 @@ package main
 import (
 	"context"
 	"flag"
-	"gogrpcgateway/service_proto"
+	"log"
 	"net/http"
+	"proxy/service_proto"
 
 	"github.com/golang/glog"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
@@ -15,7 +16,7 @@ import (
 var (
 	// command-line options:
 	// gRPC server endpoint
-	grpcServerEndpoint = flag.String("grpc-server-endpoint", "localhost:9090", "gRPC server endpoint")
+	grpcServerEndpoint = flag.String("grpc-server-endpoint", "localhost:3000", "gRPC server endpoint")
 )
 
 func run() error {
@@ -31,8 +32,8 @@ func run() error {
 	if err != nil {
 		return err
 	}
-
 	// Start HTTP server (and proxy calls to gRPC server endpoint)
+	log.Println("gateway server has started on port 8081")
 	return http.ListenAndServe(":8081", mux)
 }
 
