@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"gogrpcgateway/service_proto"
 	"log"
 	"net"
@@ -32,4 +33,11 @@ func main() {
 	if err = srv.Serve(lis); err != nil {
 		log.Fatalln(err)
 	}
+}
+
+func (ex *ExampleService) Echo(ctx context.Context, msg *service_proto.StringMessage) (*service_proto.StringMessage, error) {
+
+	return &service_proto.StringMessage{
+		Value: "Hello " + msg.Value,
+	}, nil
 }

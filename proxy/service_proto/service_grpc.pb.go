@@ -35,7 +35,7 @@ func NewYourServiceClient(cc grpc.ClientConnInterface) YourServiceClient {
 
 func (c *yourServiceClient) Echo(ctx context.Context, in *StringMessage, opts ...grpc.CallOption) (*StringMessage, error) {
 	out := new(StringMessage)
-	err := c.cc.Invoke(ctx, "/proxy.service_proto.YourService/Echo", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/gogrpcgateway.service_proto.YourService/Echo", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -80,7 +80,7 @@ func _YourService_Echo_Handler(srv interface{}, ctx context.Context, dec func(in
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/proxy.service_proto.YourService/Echo",
+		FullMethod: "/gogrpcgateway.service_proto.YourService/Echo",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(YourServiceServer).Echo(ctx, req.(*StringMessage))
@@ -92,7 +92,7 @@ func _YourService_Echo_Handler(srv interface{}, ctx context.Context, dec func(in
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var YourService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "proxy.service_proto.YourService",
+	ServiceName: "gogrpcgateway.service_proto.YourService",
 	HandlerType: (*YourServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

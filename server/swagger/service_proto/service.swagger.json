@@ -16,7 +16,7 @@
     "application/json"
   ],
   "paths": {
-    "/v1/example/echo": {
+    "/echo": {
       "post": {
         "operationId": "YourService_Echo",
         "responses": {

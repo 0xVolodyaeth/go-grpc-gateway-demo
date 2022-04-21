@@ -12,7 +12,7 @@ message StringMessage {
 service YourService {
   rpc Echo(StringMessage) returns (StringMessage) {
     option (google.api.http) = {
-     post: "/v1/example/echo"
+     post: "/echo"
      body: "*"
    };
   }

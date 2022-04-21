@@ -10,13 +10,6 @@ import (
 	"github.com/golang/glog"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"google.golang.org/grpc"
-	"google.golang.org/grpc/credentials/insecure"
-)
-
-var (
-	// command-line options:
-	// gRPC server endpoint
-	grpcServerEndpoint = flag.String("grpc-server-endpoint", "localhost:3000", "gRPC server endpoint")
 )
 
 func run() error {
@@ -27,8 +20,8 @@ func run() error {
 	// Register gRPC server endpoint
 	// Note: Make sure the gRPC server is running properly and accessible
 	mux := runtime.NewServeMux()
-	opts := []grpc.DialOption{grpc.WithTransportCredentials(insecure.NewCredentials())}
-	err := service_proto.RegisterYourServiceHandlerFromEndpoint(ctx, mux, *grpcServerEndpoint, opts)
+	// service_proto.RegisterYourServiceHandlerServer(ctx, mux, &service_proto.YourServiceHandler{})
+	err := service_proto.RegisterYourServiceHandlerFromEndpoint(ctx, mux, "localhost:3000", []grpc.DialOption{grpc.WithInsecure()})
 	if err != nil {
 		return err
 	}
